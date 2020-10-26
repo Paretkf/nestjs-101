@@ -76,6 +76,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Resource
 - [insomnia](https://insomnia.rest/)
+- [postgresSQL](https://www.postgresql.org/) DB
+- [pgadmin](https://www.pgadmin.org/) postgres management
 
 ## My Note
 
@@ -96,6 +98,8 @@ $ nest generate service
 # create nest module
 $ nest generate module
 
+# add type orm for postgres DB (pg = postgres)
+$ npm install @nestjs/typeorm typeorm pg
 
 ```
 
