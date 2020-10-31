@@ -40,8 +40,7 @@ export class CoffeesController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() body) {
-    this.coffeesService.update(id, body)
-    return body
+    return this.coffeesService.update(id, body)
   }
 
   @Delete(':id')
