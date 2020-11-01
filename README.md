@@ -46,7 +46,32 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+## Migrate
 
+```bash
+# create migration
+$  npx typeorm migration:create -n CoffeeRefactor
+
+# RUNNING MIGRATIONS
+
+# 💡 Remember 💡
+# You must BUILD your Nest project (so that everything is output to the `/dist/` folder,
+# before a Migration can run, it needs compilated files.
+
+
+# Compile project first 
+npm run build
+
+# Run migration(s) 
+npx typeorm migration:run
+
+# REVERT migration(s)
+npx typeorm migration:revert
+
+# Let TypeOrm generate migrations (for you)
+npx typeorm migration:generate -n SchemaSync
+
+```
 ## Test
 
 ```bash

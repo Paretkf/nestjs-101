@@ -2,7 +2,6 @@
 import { Column, Entity, Index, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Flavor } from './flavor.entity';
 
-@Index(['name', 'type'])
 @Entity() // sql table === 'coffee'
 export class Coffee {
   @PrimaryGeneratedColumn()
