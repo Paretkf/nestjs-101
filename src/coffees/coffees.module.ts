@@ -14,6 +14,9 @@ import { Flavor } from './entities/flavor.entity';
   ],
   controllers: [
     CoffeesController
+  ],
+  exports: [
+    CoffeesService
   ]
 })
 export class CoffeesModule {}
