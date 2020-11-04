@@ -1,22 +1,46 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Event } from 'src/events/entities/event.entity';
 import { Connection, Repository } from 'typeorm';
+import { COFFEE_BRANDS } from './coffee.constants';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { PaginationQueryDto } from './dto/paginate.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 
-@Injectable()
+/** 
+ * Scope TRANSIENT 
+  
+ * Transient providers are NOT shared across consumers. 
+ * Each consumer that injects a transient provider 
+ * will receive a new, dedicated instance of that provider. 
+ */
+// @Injectable({ scope: Scope.TRANSIENT })
+
+/**
+ * Scope REQUEST 
+
+ * Request scope provides a new instance of the provider 
+ * exclusively for each incoming request. 
+ */
+// @Injectable({ scope: Scope.REQUEST })
+
+
+// Scope DEFAULT - This is assumed when NO Scope is entered like so: @Injectable() */
+@Injectable({ scope: Scope.DEFAULT })
 export class CoffeesService {
   constructor(
     @InjectRepository(Coffee)
     private readonly coffeeRepository: Repository<Coffee>,
     @InjectRepository(Flavor)
     private readonly flavorRepository: Repository<Flavor>,
-    private readonly connection: Connection
-  ) {}
+    private readonly connection: Connection,
+    @Inject(COFFEE_BRANDS)
+    coffeeBrands: string[]
+  ) {
+    console.log(coffeeBrands)
+  }
 
   findAll(paginate: PaginationQueryDto) {
     return this.coffeeRepository.find({
