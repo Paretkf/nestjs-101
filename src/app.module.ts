@@ -1,3 +1,4 @@
+import Joi from '@hapi/joi';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -9,13 +10,19 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    // ConfigModule.forRoot({
+    //   envFilePath: '.environment',
+    //   /** 
+    //    * Have ConfigModule *ignore* .env files 
+    //    * Useful when using Provider UI's such as Heroku, etc (and they handle all ENV variables)
+    //    */
+    //   ignoreEnvFile: true,
+    // }),
     ConfigModule.forRoot({
-      // envFilePath: '.environment'
-      /** 
-       * Have ConfigModule *ignore* .env files 
-       * Useful when using Provider UI's such as Heroku, etc (and they handle all ENV variables)
-       */
-      // ignoreEnvFile: true,
+      // validationSchema: Joi.object({
+      //   DATABASE_HOST: Joi.required(),
+      //   DATABASE_PORT: Joi.number().default(5432),
+      // }),
     }),
     CoffeesModule,
     TypeOrmModule.forRoot({
