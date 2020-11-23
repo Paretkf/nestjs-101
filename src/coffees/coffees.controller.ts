@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query, Res, ValidationPipe } from '@nestjs/common';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { PaginationQueryDto } from './dto/paginate.dto';
@@ -20,7 +20,9 @@ export class CoffeesController {
   }
 
   @Post()
-  create(@Body() body: CreateCoffeeDto) {
+  // Add validation pipe to request scoped
+  // create(@Body(ValidationPipe) body: CreateCoffeeDto) {
+  create(@Body(ValidationPipe) body: CreateCoffeeDto) {
     this.coffeesService.create(body)
     return body
     // return `This action creates a coffee`;
