@@ -1,4 +1,5 @@
 import { Inject, Injectable, Module, Scope } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseModule } from 'src/database/database.module';
 import { Connection } from 'typeorm';
@@ -26,7 +27,8 @@ export class CoffeeBrandsFactory {
     //   host: 'localhost',
     //   port: 5432
     // }),
-    TypeOrmModule.forFeature([Coffee, Flavor])
+    TypeOrmModule.forFeature([Coffee, Flavor]),
+    ConfigModule
   ],
   providers: [
     CoffeesService,
